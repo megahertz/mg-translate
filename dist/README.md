@@ -73,9 +73,9 @@ function SampleController(t) {
 ```
 
 #### Load plural rules
-Plural rule is just a function which gets a number and returns the corresponding index 
-You can get plural rules for required languages
-on [js-simple-plurals](https://github.com/megahertz/js-simple-plurals/tree/master/web)
+Plural rule is just a function which gets a number and returns the corresponding index. 
+You can get plural rules for required languages.
+on [js-simple-plurals](https://github.com/megahertz/js-simple-plurals/tree/master/web).
 ```javascript
 function SampleController(t) {
 	t.load('ru', '$plural', function(n) { // Load plural rules function
