@@ -5,6 +5,7 @@
     <title>mg-translate example</title>
     <link rel="stylesheet" href="../bower_components/bootstrap-css/css/bootstrap.css">
     <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../bower_components/highlightjs/styles/default.css">
     <link rel="stylesheet" href="app.css">
 </head>
 <body ng-app="app" ng-controller="IndexController as ctl">
@@ -69,11 +70,11 @@
     <div class="row">
         <div class="col-sm-6">
             <h3 t>Install with Bower</h3>
-            <code>$ bower install mg-translate</code>
+            <code class="bash">$ bower install mg-translate</code>
         </div>
         <div class="col-sm-6">
             <h3 t>Install with NPM</h3>
-            <code>$ npm install mg-translate</code>
+            <code class="bash">$ npm install mg-translate</code>
         </div>
     </div>
 
@@ -95,10 +96,10 @@
         </div>
         <div class="col-sm-6">
             <h3>Filter</h3>
-            <code>&lt;h1 t&gt;{{ 'Welcome' | t }}&lt;/h1&gt;</code>
+            <code class="html">&lt;h1 t&gt;{{ 'Welcome' | t }}&lt;/h1&gt;</code>
             <h3>Service</h3>
 
-            <code>function SampleController(t) {
+            <code class="javascript">function SampleController(t) {
     this.text = t('Welcome');
 }</code>
 
@@ -108,7 +109,7 @@
     <h2 t>Load translations</h2>
 
     <h3 t>Using provider config</h3>
-    <code>angular
+    <code class="javascript">angular
     .module('app')
     .config(function config(tProvider) {
         tProvider.load('/languages/ru.json'); // Load translations from file
@@ -121,7 +122,7 @@
 });</code>
 
     <h3 t>Using service</h3>
-    <code>function SampleController(t) {
+    <code class="javascript">function SampleController(t) {
     t.load('ru', { // Load directly
         'Test' : 'Тест'
     });
@@ -134,22 +135,21 @@
     Plural rule is just a function which gets a number and returns the corresponding index.
     You can get plural rules for required languages.
     on [js-simple-plurals](https://github.com/megahertz/js-simple-plurals/tree/master/web).
-    <code>function SampleController(t) {
+    <code class="javascript">function SampleController(t) {
     t.load('ru', '$plural', function(n) { // Load plural rules function
         // function from https://github.com/megahertz/js-simple-plurals/blob/master/web/ru.js
     });
 }</code>
 
     <h3 t>Load translation file</h3>
-    <code>// app.config.js:
+    <code class="javascript">// app.config.js:
 angular
     .module('app')
     .config(function config(tProvider) {
         tProvider.load('/languages/ru.json');
-    });
-
-// ru.json:
-{
+    });</code>
+    ru.json:
+    <code class="json">{
     &quot;language&quot;: &quot;ru&quot;,
     &quot;data&quot;: {
         &quot;Welcome&quot;: &quot;Добро пожаловат&quot;,
@@ -160,7 +160,7 @@ angular
 }</code>
 
     <h3 t>Load translations as a module config</h3>
-    <code>(function() {
+    <code class="javascript">(function() {
    'use strict';
 
     var TRANSLATIONS = {
@@ -183,7 +183,7 @@ angular
 
 })();</code>
     <t>Just load this file as regular angular file</t>
-    <code>&lt;script src=&quot;langs/ru.js&quot;&gt;&lt;/script&gt;</code>
+    <code class="html">&lt;script src=&quot;langs/ru.js&quot;&gt;&lt;/script&gt;</code>
 
 </main>
 
@@ -209,6 +209,7 @@ angular
 
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../bower_components/bootstrap-css/js/bootstrap.min.js"></script>
+<script src="../bower_components/highlightjs/highlight.pack.min.js"></script>
 
 <script src="../bower_components/angular/angular.min.js"></script>
 <script src="../src/mg-translate.js"></script>
@@ -220,6 +221,12 @@ angular
         .controller('IndexController', function (t) {
             this.setLanguage = function(language) {
                 t.language(language);
+            }
+        })
+
+        .directive('code', function() {
+            return function(scope, element) {
+                hljs.highlightBlock(element[0]);
             }
         });
 </script>
