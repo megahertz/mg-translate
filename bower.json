@@ -1,0 +1,32 @@
+{
+  "name": "mg-tranlate",
+  "description": "Simple and lightweight angular translate library with format similar to yii or drupal",
+  "version": "0.0.1",
+  "main": "dist/mgtranlate.js",
+  "authors": [
+    "Alexey Prokhorov"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "translate",
+    "library",
+    "simple",
+    "lightweight",
+    "yii",
+    "drupal"
+  ],
+  "moduleType": [],
+  "homepage": "https://github.com/megahertz/mg-tranlate",
+  "ignore": [
+    "*",
+    "!dist/*"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8"
+  },
+  "devDependencies": {
+    "jasmine-core": "jasmine#~2.4.1",
+    "angular-mocks": "~1.4.8"
+  }
+}
