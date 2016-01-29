@@ -93,10 +93,13 @@ angular
     .config(function config(tProvider) {
         tProvider.load('/languages/ru.json');
     });
-    
-// ru.json:
+```    
+ 
+ru.json:
+
+```json
 {
-    "language: "ru",
+    "language": "ru",
     "data": {
         "Welcome": "Добро пожаловать",
         "User": "Пользователь",
