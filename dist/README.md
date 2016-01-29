@@ -1,17 +1,17 @@
-# mg-tranlate
+# mg-translate
 Simple and lightweight angular translate library with format similar to yii or drupal
 
 ## Installation
 
 #### Install with Bower
 ```sh
-$ bower install mg-tranlate
+$ bower install mg-translate
 ```
 
 #### Install with NPM
 
 ```sh
-$ npm install mg-tranlate
+$ npm install mg-translate
 ```
 
 ## Examples

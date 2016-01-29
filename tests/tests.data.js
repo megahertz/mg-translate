@@ -1,4 +1,5 @@
 /* jshint -W101,-W074 */
+// jscs:disable
 var testsData = {
     ruPlural: function(p) {
         var n = Math.abs(p) || 0, i = Math.floor(n, 10) || 0, v = ((p + '').split('.')[1] || '').length, i10 = i % 10, i100 = i % 100;
