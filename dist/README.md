@@ -20,6 +20,7 @@ $ npm install mg-translate
 ```html
 <!-- Simple example -->
 <h1 t>Hello world</h1>
+<t>sample</t>
 
 <!-- Translate an attribute -->
 <input type="email" placeholder="Email" t="placeholder">
@@ -95,12 +96,42 @@ angular
     
 // ru.json:
 {
-    language: 'ru',
-    data: {
-        'Welcome': 'Добро пожаловать',
-        'User': 'Пользователь',
+    "language: "ru",
+    "data": {
+        "Welcome": "Добро пожаловать",
+        "User": "Пользователь",
         …
     },
-    $plural: function (p) { var n = Math.abs(p)||0, i = Math.floor(n,10)||0, v = ((p+'').split('.')[1]||'').length, i10 = i % 10, i100 = i % 100; return v === 0 && i10 === 1 && i100 !== 11 ? 0 : v === 0 && (i10 >= 2 && i10 <= 4) && !(i100 >= 12 && i100 <= 14) ? 1 : v === 0 && i10 === 0 || v === 0 && (i10 >= 5 && i10 <= 9) || v === 0 && (i100 >= 11 && i100 <= 14) ? 2 : 3; }
+    "$plural": "function (p) { var n = Math.abs(p)||0, i = Math.floor(n,10)||0, v = ((p+'').split('.')[1]||'').length, i10 = i % 10, i100 = i % 100; return v === 0 && i10 === 1 && i100 !== 11 ? 0 : v === 0 && (i10 >= 2 && i10 <= 4) && !(i100 >= 12 && i100 <= 14) ? 1 : v === 0 && i10 === 0 || v === 0 && (i10 >= 5 && i10 <= 9) || v === 0 && (i100 >= 11 && i100 <= 14) ? 2 : 3; }"
 }
+```
+
+#### Load translations as a module config
+```javascript
+(function() {
+    'use strict';
+
+    var TRANSLATIONS = {
+        'Download' : 'Скачать',
+        …
+    };
+
+    angular
+        .module('mg.translate')
+        .config(config);
+
+    /** @ngInject */
+    function config(tProvider) {
+        tProvider.load('ru', '$plural', function(p) {
+            // plural rule
+        });
+
+        tProvider.load('ru', TRANSLATIONS);
+    }
+
+})();
+```
+Just load this file as regular angular file
+```html
+<script src="langs/ru.js"></script>
 ```

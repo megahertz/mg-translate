@@ -8,7 +8,7 @@ describe('t filter', function() {
 
     var testsData = window.testsData;
 
-    beforeEach(module('mgtranslate'));
+    beforeEach(module('mg.translate'));
 
     beforeEach(inject(function($injector) {
         t       = $injector.get('t');

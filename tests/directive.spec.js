@@ -4,7 +4,7 @@ describe('t directive ', function () {
     var $rootScope;
     var t;
 
-    beforeEach(module('mgtranslate'));
+    beforeEach(module('mg.translate'));
 
     beforeEach(inject(function ($injector) {
         $compile = $injector.get('$compile');

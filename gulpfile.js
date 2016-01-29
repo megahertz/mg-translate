@@ -55,9 +55,9 @@ gulp.task('build-assets', function() {
 
 gulp.task('build', ['test', 'build-assets'], function() {
     return gulp.src('src/*.js')
-        .pipe(require('gulp-concat')('mgtranslate.js'))
+        .pipe(require('gulp-concat')('mg-translate.js'))
         .pipe(gulp.dest('dist'))
-        .pipe(require('gulp-concat')('mgtranslate.min.js'))
+        .pipe(require('gulp-concat')('mg-translate.min.js'))
         .pipe(require('gulp-ng-annotate')())
         .pipe(require('gulp-uglifyjs')({
             outSourceMap: true

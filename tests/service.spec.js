@@ -14,7 +14,7 @@ describe('t service', function() {
                 tProvider.load('/test.json');
                 tProvider.language('ru');
             });
-        module('mgtranslate', 'test');
+        module('mg.translate', 'test');
     });
 
     beforeEach(inject(function($injector) {
@@ -83,7 +83,8 @@ describe('t service', function() {
         t.load('ru', {
             '{n} day|{n} days' : '{n} день|{n} дня|{n} дней|{n} дня'
         });
-        t.load('ru', '$plural', testsData.ruPlural);
+
+        t.load('ru', '$plural', testsData.ruPlural.toString());
 
         t.language('en');
         expect(t('{n} day|{n} days', 1)).toBe('1 day');

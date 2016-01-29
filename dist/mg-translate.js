@@ -1,8 +1,8 @@
 'use strict';
 
-(function(angular) {
+(function() {
 
-    angular.module('mgtranslate', [])
+    angular.module('mg.translate', [])
         .provider('t', provider)
         .filter('t', filter)
         .directive('t', directive);
@@ -11,7 +11,8 @@
         var translations = {
             en: { $plural: function(n) { return Math.floor(Math.abs(n)) === 1 ? 0 : 1; } }
         };
-        var currentLang = 'en';
+        var currentLang;
+        var useDefaultLang = false;
         var preloadResources = [];
 
         return {
@@ -23,16 +24,19 @@
         /**
          * @ngdoc service
          * @name t
-         * @module mgtranslate
+         * @module mg.translate
          * @ngInject
          */
-        function service($http) {
+        function service($http, $rootScope, $window) {
             if (preloadResources.length) {
                 angular.forEach(preloadResources, loadResource);
             }
+            if (undefined === currentLang) {
+                currentLang = defaultLang();
+            }
 
             translate.load = load;
-            translate.language = language;
+            translate.language = changeLanguage;
             return translate;
 
             function load(arg1, arg2, arg3) {
@@ -55,6 +59,11 @@
                     loadData(json.language, json.category || 'app', json.data);
                     return json;
                 });
+            }
+
+            function changeLanguage(lang) {
+                language(lang);
+                $rootScope.$emit('$languageChange', lang);
             }
         }
 
@@ -87,8 +96,24 @@
             if (!lang) {
                 return currentLang;
             } else {
+                if (useDefaultLang && window.localStorage) {
+                    localStorage.lang = lang;
+                }
                 currentLang = lang;
             }
+        }
+
+        function defaultLang() {
+            useDefaultLang = true;
+            if (window.localStorage && localStorage.lang) {
+                return localStorage.lang;
+            }
+            var lang = navigator.language || navigator.userLanguage || 'en';
+            var pos = lang.indexOf('_');
+            if (-1 !== pos) {
+                return lang.slice(0, pos);
+            }
+            return lang;
         }
 
         /**
@@ -102,7 +127,6 @@
             category = category || 'app';
 
             if (
-                translations &&
                 translations[currentLang] &&
                 translations[currentLang][category] &&
                 translations[currentLang][category][message])
@@ -139,9 +163,13 @@
             return message;
         }
 
-        function applyPluralForm(message, number, pluralRules) {
+        function applyPluralForm(message, number, rules) {
+            if ('string' === typeof rules) {
+                /* jshint -W061*/
+                rules = eval('rules=' + rules);
+            }
             var chunks = message.split('|');
-            var result = chunks[pluralRules(number)];
+            var result = chunks[rules(number)];
             if (undefined === result) {
                 result = chunks[0];
             }
@@ -155,7 +183,7 @@
         };
     }
 
-    function directive(t) {
+    function directive(t, $rootScope) {
         return {
             link:     link,
             restrict: 'EA',
@@ -166,15 +194,33 @@
             var category = attrs.category || 'app';
             var params = scope.$eval(attrs.values);
             var translateAttributes = attrs.t || 'html';
+            var original = {};
 
             angular.forEach(translateAttributes.split(','), function(a) {
                 if ('html' === a) {
-                    element.html(t(element.html(), params, category));
+                    original[a] = element.html();
                 } else {
-                    element.attr(a, t(element.attr(a), params, category));
+                    original[a] = element.attr(a);
+                }
+                if (original[a] && original[a].trim) {
+                    original[a] = original[a].trim();
                 }
             });
+
+            $rootScope.$on('$languageChange', applyTranslate);
+
+            applyTranslate();
+
+            function applyTranslate() {
+                angular.forEach(translateAttributes.split(','), function(a) {
+                    if ('html' === a) {
+                        element.html(t(original.html, params, category));
+                    } else {
+                        element.attr(a, t(original[a], params, category));
+                    }
+                });
+            }
         }
     }
 
-})(window.angular);
+})();
