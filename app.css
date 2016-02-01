@@ -7,6 +7,15 @@ code {
     white-space: pre-wrap
 }
 
+dd {
+    margin-bottom: 1em;
+}
+
+dt.offset {
+    margin-top: 2em;
+}
+
+
 footer {
     margin-top: 2em;
     background: #f0f0f0;
@@ -19,6 +28,7 @@ footer {
 .title-header {
     padding: 2em 0;
     text-align: center;
+    background: #268;
     background: linear-gradient(#268, #37b);
     color: #fff;
 }
