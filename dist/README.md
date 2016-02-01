@@ -203,8 +203,7 @@ Parameters
 
 Name                | Default | Description
 --------------------|---------|---
-t (optional)        | 'html'  | A list of attributes which must be translated, 
-separated by comma. The html means an element content
+t (optional)        | 'html'  | A list of attributes which must be translated, separated by comma. The html means an element content
 values (optional)   | null    | Number for plural rules or values to replace placeholders
 category (optional) | 'app'   | Translations category
   
