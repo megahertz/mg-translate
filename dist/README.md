@@ -16,7 +16,7 @@ $ npm install mg-translate
 
 ## Examples
 
-See [the page on github.io](megahertz.github.io/mg-translate/) as a library example
+See [a page on github.io](https://megahertz.github.io/mg-translate/) as a library example
 
 #### Using directive
 ```html
