@@ -177,12 +177,24 @@
         }
     }
 
+    /**
+     * @ngdoc filter
+     * @name t
+     * @module mg.translate
+     * @ngInject
+     */
     function filter(t) {
         return function(message, params, category) {
             return t(message, params, category);
         };
     }
 
+    /**
+     * @ngdoc directive
+     * @name t
+     * @module mg.translate
+     * @ngInject
+     */
     function directive(t, $rootScope) {
         return {
             link:     link,
