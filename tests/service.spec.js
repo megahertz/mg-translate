@@ -79,6 +79,11 @@ describe('t service', function() {
         expect(t('Service Test')).toBe('服务测试');
     });
 
+    it('should replace {n} placeholder by value', function() {
+        expect(t('the value is {n}', 'test')).toBe('the value is test');
+        expect(t('the value is {n}', 3)).toBe('the value is 3');
+    });
+
     it('should translate plural forms', function() {
         t.load('ru', {
             '{n} day|{n} days' : '{n} день|{n} дня|{n} дней|{n} дня'
