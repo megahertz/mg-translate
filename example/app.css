@@ -1,0 +1,44 @@
+a {
+    cursor: pointer;
+}
+
+code {
+    display:block;
+    white-space: pre-wrap
+}
+
+dd {
+    margin-bottom: 1em;
+}
+
+dt.offset {
+    margin-top: 2em;
+}
+
+
+footer {
+    margin-top: 2em;
+    background: #f0f0f0;
+}
+
+.navbar {
+    margin-bottom: 0 !important;
+}
+
+.title-header {
+    padding: 2em 0;
+    text-align: center;
+    background: #268;
+    background: linear-gradient(#268, #37b);
+    color: #fff;
+}
+
+.title-header h2 {
+    color: #ddf;
+}
+
+.title-header .btn-bs {
+    margin: 0 .5em;
+    color: #ddf;
+    border: 1px solid #ddf;
+}

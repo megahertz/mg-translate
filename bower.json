@@ -1,7 +1,7 @@
 {
   "name": "mg-translate",
   "description": "Simple and lightweight (~3kb) angular translate library with format similar to yii or drupal",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "main": "dist/mg-translate.js",
   "authors": [
     "Alexey Prokhorov"

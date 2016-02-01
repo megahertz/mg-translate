@@ -63,4 +63,16 @@ describe('t directive ', function () {
         element = $compile(code)($rootScope);
         expect(element.text()).toBe('2 дня');
     });
+
+    it('should watch values', function() {
+        $rootScope.values = 1;
+
+        var code = '<h1 t values="values">{n} day|{n} days</h1>';
+        var element = $compile(code)($rootScope);
+        expect(element.text()).toBe('1 день');
+
+        $rootScope.values = 2;
+        $rootScope.$digest();
+        expect(element.text()).toBe('2 дня');
+    });
 });
