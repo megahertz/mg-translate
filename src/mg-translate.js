@@ -124,10 +124,12 @@
          * @returns {*}
          */
         function translate(message, params, category) {
+            /* jshint -W074 */
             category = category || 'app';
 
+            translations[currentLang] = translations[currentLang] || {};
+
             if (
-                translations[currentLang] &&
                 translations[currentLang][category] &&
                 translations[currentLang][category][message])
             {
@@ -177,12 +179,24 @@
         }
     }
 
+    /**
+     * @ngdoc filter
+     * @name t
+     * @module mg.translate
+     * @ngInject
+     */
     function filter(t) {
         return function(message, params, category) {
             return t(message, params, category);
         };
     }
 
+    /**
+     * @ngdoc directive
+     * @name t
+     * @module mg.translate
+     * @ngInject
+     */
     function directive(t, $rootScope) {
         return {
             link:     link,
@@ -192,7 +206,6 @@
 
         function link(scope, element, attrs) {
             var category = attrs.category || 'app';
-            var params = scope.$eval(attrs.values);
             var translateAttributes = attrs.t || 'html';
             var original = {};
 
@@ -209,14 +222,19 @@
 
             $rootScope.$on('$languageChange', applyTranslate);
 
+            if (attrs.values) {
+                scope.$watch(attrs.values, applyTranslate);
+            }
+
             applyTranslate();
 
             function applyTranslate() {
+                var values = scope.$eval(attrs.values, scope);
                 angular.forEach(translateAttributes.split(','), function(a) {
                     if ('html' === a) {
-                        element.html(t(original.html, params, category));
+                        element.html(t(original.html, values, category));
                     } else {
-                        element.attr(a, t(original[a], params, category));
+                        element.attr(a, t(original[a], values, category));
                     }
                 });
             }

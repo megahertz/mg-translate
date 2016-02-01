@@ -87,14 +87,14 @@
             <h3 t>Directive</h3>
 
             <code>&lt;!-- <t>Simple example</t> --&gt;
-                &lt;h1 t&gt;Hello world&lt;/h1&gt;
-                &lt;t&gt;sample&lt;/t&gt;
+&lt;h1 t&gt;Hello world&lt;/h1&gt;
+&lt;t&gt;sample&lt;/t&gt;
 
-                &lt;!-- <t>Translate an attribute</t> --&gt;
-                &lt;input type=&quot;email&quot; placeholder=&quot;Email&quot; t=&quot;placeholder&quot;&gt;
+&lt;!-- <t>Translate an attribute</t> --&gt;
+&lt;input type=&quot;email&quot; placeholder=&quot;Email&quot; t=&quot;placeholder&quot;&gt;
 
-                &lt;!-- <t>Using plural rules</t> --&gt;
-                &lt;span t values=&quot;10&quot;&gt;{n} Day|{n} Days&lt;/span&gt;</code>
+&lt;!-- <t>Using plural rules</t> --&gt;
+&lt;span t values=&quot;10&quot;&gt;{n} Day|{n} Days&lt;/span&gt;</code>
 
         </div>
         <div class="col-sm-6">
@@ -104,8 +104,8 @@
 
             <h3 t>Service</h3>
             <code class="javascript">function SampleController(t) {
-                this.text = t('Welcome');
-                }</code>
+    this.text = t('Welcome');
+}</code>
 
         </div>
     </div>
@@ -114,85 +114,86 @@
 
     <h3 t>Using provider config</h3>
     <code class="javascript">angular
-        .module('app')
-        .config(function config(tProvider) {
+    .module('app')
+    .config(function config(tProvider) {
         tProvider.load('/languages/ru.json'); // Load translations from file
         tProvider.load('ru', { // Load directly
-        'Test' : 'Тест'
+            'Test' : 'Тест'
         });
         tProvider.load('ru', '$plural', function(n) { // Load plural rules function
-        ...
+            ...
         });
-        });</code>
+    });</code>
 
     <h3 t>Using service</h3>
     <code class="javascript">function SampleController(t) {
-        t.load('ru', { // Load directly
+    t.load('ru', { // Load directly
         'Test' : 'Тест'
-        });
-        t.load('/languages/ru.json').then(function() { // Load translations from file
+    });
+    t.load('/languages/ru.json').then(function() { // Load translations from file
         console.log('language is loaded');
-        });
-        }</code>
+    });
+}</code>
 
     <h3 t>Load plural rules</h3>
-    Plural rule is just a function which gets a number and returns the corresponding index.
-    You can get plural rules for required languages.
-    on [js-simple-plurals](https://github.com/megahertz/js-simple-plurals/tree/master/web).
+    <t>Plural rule is just a function which gets a number and returns the corresponding index.
+        You can get plural rules for required languages on</t>
+    <a href="https://github.com/megahertz/js-simple-plurals/tree/master/web>">
+        js-simple-plurals</a>.
     <code class="javascript">function SampleController(t) {
-        t.load('ru', '$plural', function(n) { // Load plural rules function
+    t.load('ru', '$plural', function(n) { // Load plural rules function
         // function from https://github.com/megahertz/js-simple-plurals/blob/master/web/ru.js
-        });
-        }</code>
+    });
+}</code>
 
     <h3 t>Load translation file</h3>
     <code class="javascript">// app.config.js:
-        angular
-        .module('app')
-        .config(function config(tProvider) {
+angular
+    .module('app')
+    .config(function config(tProvider) {
         tProvider.load('/languages/ru.json');
-        });</code>
+    });</code>
     ru.json:
     <code class="json">{
-        &quot;language&quot;: &quot;ru&quot;,
-        &quot;data&quot;: {
+    &quot;language&quot;: &quot;ru&quot;,
+    &quot;data&quot;: {
         &quot;Welcome&quot;: &quot;Добро пожаловат&quot;,
         &quot;User&quot;: &quot;Пользователь&quot;,
         …
-        },
-        &quot;$plural&quot;: &quot;function (p) { var n = Math.abs(p)||0,
-        i = Math.floor(n,10)||0, v = ((p+'').split('.')[1]||'').length,
-        i10 = i % 10, i100 = i % 100;
-        return v === 0 &amp;&amp; i10 === 1 &amp;&amp; i100 !== 11 ? 0 : v === 0 &amp;&amp;
-        (i10 &gt;= 2 &amp;&amp; i10 &lt;= 4) &amp;&amp; !(i100 &gt;= 12 &amp;&amp;
-        i100 &lt;= 14) ? 1 : v === 0 &amp;&amp; i10 === 0 || v === 0 &amp;&amp;
-        (i10 &gt;= 5 &amp;&amp; i10 &lt;= 9) || v === 0 &amp;&amp;
-        (i100 &gt;= 11 &amp;&amp; i100 &lt;= 14) ? 2 : 3; }&quot;
-        }</code>
+    },
+    &quot;$plural&quot;: &quot;function (p) { var n = Math.abs(p)||0,
+    i = Math.floor(n,10)||0, v = ((p+'').split('.')[1]||'').length,
+    i10 = i % 10, i100 = i % 100;
+    return v === 0 &amp;&amp; i10 === 1 &amp;&amp; i100 !== 11 ? 0 : v === 0 &amp;&amp;
+    (i10 &gt;= 2 &amp;&amp; i10 &lt;= 4) &amp;&amp; !(i100 &gt;= 12 &amp;&amp;
+    i100 &lt;= 14) ? 1 : v === 0 &amp;&amp; i10 === 0 || v === 0 &amp;&amp;
+    (i10 &gt;= 5 &amp;&amp; i10 &lt;= 9) || v === 0 &amp;&amp;
+    (i100 &gt;= 11 &amp;&amp; i100 &lt;= 14) ? 2 : 3; }&quot;
+}</code>
 
     <h3 t>Load translations as a module config</h3>
     <code class="javascript">(function() {
-        'use strict';
+    'use strict';
 
-        var TRANSLATIONS = {
+    var TRANSLATIONS = {
         'Download' : 'Скачать',
         …
-        };
+    };
 
-        angular
+    angular
         .module('mg.translate')
         .config(config);
 
         /** @ngInject */
         function config(tProvider) {
-        tProvider.load('ru', '$plural', function(p) {
-        // plural rule
-        });
+            tProvider.load('ru', '$plural', function(p) {
+                // plural rule
+            });
 
-        tProvider.load('ru', TRANSLATIONS);
+            tProvider.load('ru', TRANSLATIONS);
         }
 
-        })();</code>
+    })();</code>
     <t>Just load this file as regular angular file</t>
     <code class="html">&lt;script src=&quot;langs/ru.js&quot;&gt;&lt;/script&gt;</code>
 
@@ -255,7 +256,7 @@
 
     <h3 t><t>Filter</t> t</h3>
 
-    The t filter function is the same as t() service function.
+    <t>The t filter function is the same as t() service function.</t>
 
     <h3><t>Directive</t> t</h3>
 
@@ -263,15 +264,15 @@
         parameters are the same as for t() service function.</t>
 
     <code class="html">&lt;ANY
-        [t="{string}"]
-        [values="{number|Object}"]
-        [category="{string}"]&gt;
-        &lt;/ANY&gt;
+    [t="{string}"]
+    [values="{number|Object}"]
+    [category="{string}"]&gt;
+&lt;/ANY&gt;
 
-        &lt;t
-        [values="{number|Object}"]
-        [category="{string}"]&gt;
-        &lt;/t&gt;</code>
+&lt;t
+    [values="{number|Object}"]
+    [category="{string}"]&gt;
+&lt;/t&gt;</code>
 
     <h4 t>Parameters</h4>
 
