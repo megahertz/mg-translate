@@ -1,6 +1,6 @@
 {
   "name": "mg-translate",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Simple and lightweight angular translate library with format similar to yii or drupal",
   "directories": {
     "test": "tests"
