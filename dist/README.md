@@ -42,7 +42,7 @@ See [a page on github.io](https://megahertz.github.io/mg-translate/) as a librar
 #### Using service
 ```javascript
 function SampleController(t) {
-	this.text = t('Welcome');
+    this.text = t('Welcome');
 }
 ```
 
@@ -66,12 +66,12 @@ angular
 #### Using service
 ```javascript
 function SampleController(t) {
-	t.load('ru', { // Load directly
+    t.load('ru', { // Load directly
             'Test' : 'Тест'
         });
-	t.load('/languages/ru.json').then(function() { // Load translations from file
-		console.log('language is loaded');
-	});
+    t.load('/languages/ru.json').then(function() { // Load translations from file
+        console.log('language is loaded');
+    });
 }
 ```
 
@@ -81,8 +81,8 @@ You can get plural rules for required languages.
 on [js-simple-plurals](https://github.com/megahertz/js-simple-plurals/tree/master/web).
 ```javascript
 function SampleController(t) {
-	t.load('ru', '$plural', function(n) { // Load plural rules function
-	   // function from https://github.com/megahertz/js-simple-plurals/blob/master/web/ru.js
+    t.load('ru', '$plural', function(n) { // Load plural rules function
+       // function from https://github.com/megahertz/js-simple-plurals/blob/master/web/ru.js
     });
 }
 ```
@@ -210,5 +210,3 @@ category (optional) | 'app'   | Translations category
 ## License
 
 Licensed under MIT.
-
- 

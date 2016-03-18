@@ -2,12 +2,15 @@
 
 (function() {
 
+    filter.$inject = ["t"];
+    directive.$inject = ["t", "$rootScope"];
     angular.module('mg.translate', [])
         .provider('t', provider)
         .filter('t', filter)
         .directive('t', directive);
 
     function provider() {
+        service.$inject = ["$http", "$rootScope", "$window"];
         var translations = {
             en: { $plural: function(n) { return Math.floor(Math.abs(n)) === 1 ? 0 : 1; } }
         };
