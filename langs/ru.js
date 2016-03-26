@@ -23,6 +23,7 @@
         'Load translations': 'Загрузка переводов',
         'Load translations as a module config': 'Загрузка перевода как конфига модуля',
         'Loads translations from Object.': 'Загрузить перевод из объекта.',
+        'Logo by': 'Логотип разработан',
         'Name': 'Название',
         'Number for plural rules or values to replace placeholders': 'Число для правил числительных или значание для замены шаблонов',
         'Parameters': 'Параметры',

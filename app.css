@@ -15,22 +15,26 @@ dt.offset {
     margin-top: 2em;
 }
 
-
-footer {
-    margin-top: 2em;
-    background: #f0f0f0;
-}
-
 .navbar {
     margin-bottom: 0 !important;
 }
 
 .title-header {
     padding: 2em 0;
-    text-align: center;
+    text-align: left;
     background: #268;
     background: linear-gradient(#268, #37b);
     color: #fff;
+}
+
+.title-header .logo {
+    text-align: center;
+}
+
+.title-header .logo img {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 256px;
 }
 
 .title-header h2 {
@@ -41,4 +45,21 @@ footer {
     margin: 0 .5em;
     color: #ddf;
     border: 1px solid #ddf;
+}
+
+footer {
+    margin-top: 2em;
+    background: #f0f0f0;
+}
+
+footer .navbar-nav {
+    float: none;
+}
+
+footer .logo-info {
+    float: right !important;
+}
+
+footer .logo-info t {
+    color: #333
 }
