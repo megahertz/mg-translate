@@ -33,7 +33,7 @@
         'Russian': 'Русский',
         'Service': 'Севрис',
         'Sets an application language. If the language is not set the library\n            tries to detect it automatically using a navigator object or a value from\n            localStorage.lang. To disable autodetection you can set a false value.': 'Устанавливает язык приложения. Если язык не задан библиотека пытается определить его через navigator или значение из localStorage.lang. Используйте false чтобы отключить автоопределение.',
-        'Simple and lightweight (~3kb) angular translate library with format similar\n            to yii or drupal': 'Простая и легкая (~3кб) angular библиотека для переводов как в yii или drupal',
+        'Simple and lightweight (~3kb) angular translate library with format similar\n                    to yii or drupal': 'Простая и легкая (~3кб) angular библиотека для переводов как в yii или drupal',
         'Simple example': 'Простой пример',
         'The t filter function is the same as t() service function.': 'Фильтр t аналогичен функции сервиса t().',
         'The t directive can be used as an element or as an attribute. values and category\n        parameters are the same as for t() service function.': 'Директива t может использоваться и как элемент и как атрибут. Параметры values и category те же что и для функции t() сервиса.',
